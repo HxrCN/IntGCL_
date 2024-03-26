@@ -1,37 +1,33 @@
-# THAN
-Codes, datasets for paper "TemporalHAN: Hierarchical Attention-Based Heterogeneous Temporal Network Embedding"
+# InpGCL
+Codes, datasets for paper "Interpretable Graph Contrastive Learning with Attention-aware for Recommendation"
 
-![AppVeyor](https://img.shields.io/badge/python-3.6.13-blue)
-![AppVeyor](https://img.shields.io/badge/numpy-1.19.5-red)
-![AppVeyor](https://img.shields.io/badge/tensorflow-1.6.0-brightgreen)
-![AppVeyor](https://img.shields.io/badge/keras-2.2.0-orange)
+![AppVeyor](https://img.shields.io/badge/python==3.9.13)
+![AppVeyor](https://img.shields.io/badge/numpy==1.26.1)
+![AppVeyor](https://img.shields.io/badge/torch==1.10.1+cu111)
+![AppVeyor](https://img.shields.io/badge/scipy==1.11.3)
+![AppVeyor](https://img.shields.io/badge/torch-sparse==0.6.13)
 
 ## Run Code
 
-1 Download preprocessed data and modify data path, then:
+1 When using InpGCL for the first time, if there is no attention matrix in the Attention folder, please use the following command for similarity matrix calculation (due to the large size of the matrix, the calculation may take some time).:
 ```
-python ex_acm3025.py
-```
-
-2 Perform data set processing:
-```
-python THAN_aminer_Y1.py
-python THAN_aminer_Y2.py
-python THAN_aminer_Y3.py
-python THAN_aminer_build_real_new_Y1_mat.py
-python THAN_aminer_build_real_new_Y2_mat.py
-python THAN_aminer_build_real_new_Y3_mat.py
-```
-Other data sets are similar.
+Yelp:    python Main.py --data yelp --temp 0.3 --epsilon 0.5 --M 300 --R 3
+Amazon:  python Main.py --data amazon --temp  0.3 --epsilon 1.0 --M 500 --R 6
+Tmall:   python Main.py --data tmall  --M 800 --R 6
 
 
-3 Select the corresponding data set and downstream task:
 ```
-python THAN_aminer_ex_new_3yi.py
-python THAN_aminer_RP.py
-python THAN_yelp_ex_new_3yi.py
-python THAN_yelp_RP_test.py
+
+2 After all attention matrices for the datasets are computed, for the second round of model training, you can use the previously calculated attention matrices for training. Therefore, you can use the following command for quick execution.
 ```
+Yelp:    python Main.py --data yelp --temp 0.3 --epsilon 0.5 --M 300 --R 3  --no_cal_mtx_flag
+Amazon:  python Main.py --data amazon --temp  0.3 --epsilon 1.0 --M 500 --R 6  --no_cal_mtx_flag
+Tmall:   python Main.py --data tmall  --M 800 --R 6 --no_cal_mtx_flag
+```
+
+
+
+
 
 ## Datasets
-/data/tips.txt
+/data/dataset.txt
