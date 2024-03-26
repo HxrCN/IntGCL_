@@ -1,0 +1,47 @@
+# -*- coding: utf-8 -*-
+
+import datetime
+
+logmsg = ''
+
+timemark = dict()
+
+saveDefault = False
+
+
+def log(msg, save=None, oneline=False):
+    global logmsg
+
+    global saveDefault
+
+    time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    tem = '%s: %s' % (time, msg)
+
+    if save != None:
+
+        if save:
+            logmsg += tem + '\n'
+
+
+    elif saveDefault:
+
+        logmsg += tem + '\n'
+
+    if oneline:
+
+        print(tem, end='\r')
+
+    else:
+
+        print(tem)
+
+
+def marktime(marker):
+    global timemark
+
+    timemark[marker] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+
+if __name__ == '__main__':
+    log('')
